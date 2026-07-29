@@ -13,6 +13,26 @@ dependencies:
 
   cupertino_icons: ^1.0.8
 
+  # State Management
+  flutter_riverpod: ^2.6.1
+
+  # Navigation
+  go_router: ^16.0.0
+
+  # Firebase
+  firebase_core: ^4.0.0
+
+  # Local Storage
+  shared_preferences: ^2.5.3
+
+  # Utilities
+  intl: ^0.20.2
+
+  # Media
+  audioplayers: ^6.5.1
+  flutter_svg: ^2.2.0
+  cached_network_image: ^3.4.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

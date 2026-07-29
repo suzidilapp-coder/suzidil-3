@@ -1,1 +1,1 @@
-enum SplashState { initial, loading, completed }
+enum SplashState { loading, completed }

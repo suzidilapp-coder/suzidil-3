@@ -1,18 +1,20 @@
 import 'dart:async';
 
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../../../../core/constants/app_durations.dart';
 import '../viewmodels/splash_state.dart';
 
-class SplashController {
-  SplashState _state = SplashState.initial;
+final splashControllerProvider =
+    AutoDisposeAsyncNotifierProvider<SplashController, SplashState>(
+      SplashController.new,
+    );
 
-  SplashState get state => _state;
-
-  Future<void> initialize() async {
-    _state = SplashState.loading;
-
+class SplashController extends AutoDisposeAsyncNotifier<SplashState> {
+  @override
+  Future<SplashState> build() async {
     await Future.delayed(AppDurations.splash);
 
-    _state = SplashState.completed;
+    return SplashState.completed;
   }
 }
