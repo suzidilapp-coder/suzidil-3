@@ -1,38 +1,32 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
-import '../../../../core/constants/app_strings.dart';
-import '../controllers/splash_controller.dart';
-import '../viewmodels/splash_state.dart';
-
-class SplashPage extends ConsumerWidget {
+class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    ref.listen<AsyncValue<SplashState>>(splashControllerProvider, (
-      previous,
-      next,
-    ) {
-      next.whenData((state) {
-        if (state == SplashState.completed) {
-          // context.go('/home');
-        }
-      });
+  State<SplashPage> createState() => _SplashPageState();
+}
+
+class _SplashPageState extends State<SplashPage> {
+  @override
+  void initState() {
+    super.initState();
+
+    Timer(const Duration(seconds: 3), () {
+      if (!mounted) return;
+
+      context.go('/home');
     });
+  }
 
-    final splashState = ref.watch(splashControllerProvider);
-
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: splashState.when(
-          loading: () => const CircularProgressIndicator(),
-          error: (error, stackTrace) => Text(error.toString()),
-          data: (_) => const Text(
-            AppStrings.appName,
-            style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
-          ),
-        ),
+      body: SizedBox.expand(
+        child: Image.asset('assets/images/splash.png', fit: BoxFit.cover),
       ),
     );
   }
